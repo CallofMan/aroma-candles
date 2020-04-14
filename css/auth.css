@@ -1,0 +1,40 @@
+.authA
+{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 150px;
+    height: 30px;
+}
+
+.auth
+{
+    margin: auto;
+    max-width: 1000px;
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+    .regInp, .button
+    {
+        width: 600px;
+        height: 50px;
+    }
+
+@media all and (max-width: 760px)
+{
+    .authA
+    {
+        position: relative;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+    }
+
+    .regInp, .button
+    {
+        width: 300px;
+    }
+}
