@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 10 2020 г., 12:33
+-- Время создания: Апр 14 2020 г., 13:59
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.3.9
 
@@ -96,6 +96,18 @@ CREATE TABLE `details_order` (
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `images`
+--
+
+CREATE TABLE `images` (
+  `id_image` int(11) NOT NULL,
+  `id_candle` int(11) NOT NULL,
+  `path` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `orders`
 --
 
@@ -118,6 +130,14 @@ CREATE TABLE `roles` (
   `id_role` tinyint(2) NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `roles`
+--
+
+INSERT INTO `roles` (`id_role`, `name`) VALUES
+(1, 'admin'),
+(2, 'user');
 
 -- --------------------------------------------------------
 
@@ -174,6 +194,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id_user`, `telephone`, `email`, `password`, `first_name`, `second_name`, `address`, `id_role`) VALUES
+(1, '123', '123@123', '123', '123', '123', '123', 2),
+(2, '111', '111@111', '111', '111', '111', '111', 2);
+
+--
 -- Индексы сохранённых таблиц
 --
 
@@ -213,6 +241,13 @@ ALTER TABLE `colors`
 ALTER TABLE `details_order`
   ADD PRIMARY KEY (`id_position`),
   ADD KEY `id_order` (`id_order`),
+  ADD KEY `id_candle` (`id_candle`);
+
+--
+-- Индексы таблицы `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`id_image`),
   ADD KEY `id_candle` (`id_candle`);
 
 --
@@ -289,6 +324,12 @@ ALTER TABLE `details_order`
   MODIFY `id_position` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT для таблицы `images`
+--
+ALTER TABLE `images`
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
@@ -298,7 +339,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT для таблицы `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_role` tinyint(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_role` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `shapes`
@@ -322,7 +363,7 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -345,6 +386,12 @@ ALTER TABLE `candles`
 ALTER TABLE `details_order`
   ADD CONSTRAINT `details_order_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id_order`),
   ADD CONSTRAINT `details_order_ibfk_2` FOREIGN KEY (`id_candle`) REFERENCES `candles` (`id_candle`);
+
+--
+-- Ограничения внешнего ключа таблицы `images`
+--
+ALTER TABLE `images`
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`id_candle`) REFERENCES `candles` (`id_candle`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `orders`
