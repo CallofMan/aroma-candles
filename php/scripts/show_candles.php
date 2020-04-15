@@ -7,29 +7,38 @@
         while ($showCandles = mysqli_fetch_assoc($query))
         {
             $idCandle = $showCandles['id_candle'];
+            $idAroma = $showCandles['id_aroma'];
+            $idColor = $showCandles['id_color'];
+            $idShape = $showCandles['id_shape'];
+            $idSize = $showCandles['id_size'];
+            $idCategory = $showCandles['id_category'];
+
+            $specifications = mysqli_query($connect, "SELECT aromas.name, colors.name, shapes.name, sizes.name, categories.name FROM aromas, colors, shapes, sizes, categories WHERE aromas.id_aroma = $idAroma AND colors.id_color = $idColor AND shapes.id_shape = $idShape AND sizes.id_size = $idSize AND categories.id_category = $idCategory");
+            $specifications = mysqli_fetch_array($specifications);
+
             $nameImage = mysqli_query($connect, "SELECT path FROM images WHERE id_candle = $idCandle");
             $nameImage = mysqli_fetch_array($nameImage);
 
 
-            $idAroma = $showCandles['id_aroma'];
-            $aroma = mysqli_query($connect, "SELECT name FROM aromas WHERE id_aroma = $idAroma");
-            $aroma = mysqli_fetch_array($aroma);
+            // $idAroma = $showCandles['id_aroma'];
+            // $aroma = mysqli_query($connect, "SELECT name FROM aromas WHERE id_aroma = $idAroma");
+            // $aroma = mysqli_fetch_array($aroma);
 
-            $idColor = $showCandles['id_color'];
-            $color = mysqli_query($connect, "SELECT name FROM colors WHERE id_color = $idColor");
-            $color = mysqli_fetch_array($color);
+            // $idColor = $showCandles['id_color'];
+            // $color = mysqli_query($connect, "SELECT name FROM colors WHERE id_color = $idColor");
+            // $color = mysqli_fetch_array($color);
 
-            $idShape = $showCandles['id_shape'];
-            $shape = mysqli_query($connect, "SELECT name FROM shapes WHERE id_shape = $idShape");
-            $shape = mysqli_fetch_array($shape);
+            // $idShape = $showCandles['id_shape'];
+            // $shape = mysqli_query($connect, "SELECT name FROM shapes WHERE id_shape = $idShape");
+            // $shape = mysqli_fetch_array($shape);
 
-            $idSize = $showCandles['id_size'];
-            $size = mysqli_query($connect, "SELECT name FROM sizes WHERE id_size = $idSize");
-            $size = mysqli_fetch_array($size);
+            // $idSize = $showCandles['id_size'];
+            // $size = mysqli_query($connect, "SELECT name FROM sizes WHERE id_size = $idSize");
+            // $size = mysqli_fetch_array($size);
             
-            $idCategory = $showCandles['id_category'];
-            $category = mysqli_query($connect, "SELECT name FROM categories WHERE id_category = $idCategory");
-            $category = mysqli_fetch_array($category);
+            // $idCategory = $showCandles['id_category'];
+            // $category = mysqli_query($connect, "SELECT name FROM categories WHERE id_category = $idCategory");
+            // $category = mysqli_fetch_array($category);
 
             echo 
             "
@@ -56,11 +65,11 @@
             
                     <section class='specifications_block'>
             
-                        <p class='specifications'>Аромат: " . $aroma[0] . "</p>
-                        <p class='specifications'>Цвет: " . $color[0] . "</p>
-                        <p class='specifications'>Форма: " . $shape[0] . "</p>
-                        <p class='specifications'>Размер: " . $size[0] . "</p>
-                        <p class='specifications'>Категория: " . $category[0] . "</p>
+                        <p class='specifications'>Аромат: " . $specifications[0] . "</p>
+                        <p class='specifications'>Цвет: " . $specifications[1] . "</p>
+                        <p class='specifications'>Форма: " . $specifications[2] . "</p>
+                        <p class='specifications'>Размер: " . $specifications[3] . "</p>
+                        <p class='specifications'>Категория: " . $specifications[4] . "</p>
             
                     </section>
                     
