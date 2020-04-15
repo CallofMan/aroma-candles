@@ -12,7 +12,24 @@ html
     background: linear-gradient(0deg, rgb(159, 95, 165), rgb(81, 143, 81), rgb(218, 165, 86));
 }
 
-h1
+.header
+{
+    width: 100%;
+    height: 70px;
+    border-bottom: 3px groove rgba(233, 126, 126, 0.5);
+    background: linear-gradient(0deg, rgba(238, 211, 56, 0.2), rgb(159, 95, 165));
+    /* background-color: rgb(238, 211, 56); */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+    .headElem
+    {
+        height: 50px;
+        min-width: 150px;
+    }
+
+h1, .specifications
 {
     color: white;
 }
@@ -35,4 +52,17 @@ a:hover, .button:hover
 {
     background-color: white;
     color: rgb(233, 126, 126);
+}
+
+@media all and (max-width: 760px)
+{
+    .header
+    {
+        flex-direction: column;
+    }
+        .headElem
+        {
+            width: 100%;
+        }
+
 }

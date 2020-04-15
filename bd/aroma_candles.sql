@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 14 2020 г., 13:59
+-- Время создания: Апр 15 2020 г., 14:41
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.3.9
 
@@ -35,6 +35,16 @@ CREATE TABLE `aromas` (
   `quantity` mediumint(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `aromas`
+--
+
+INSERT INTO `aromas` (`id_aroma`, `name`, `price`, `quantity`) VALUES
+(1, 'вишня', '800.00', 300),
+(2, 'сакура', '1000.00', 500),
+(3, 'шоколад', '1000.00', 1000),
+(4, 'хвоя', '250.00', 1000);
+
 -- --------------------------------------------------------
 
 --
@@ -55,6 +65,18 @@ CREATE TABLE `candles` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `candles`
+--
+
+INSERT INTO `candles` (`id_candle`, `name`, `id_color`, `id_shape`, `id_aroma`, `id_size`, `id_category`, `price`, `quantity`, `total_sold`, `id_user`) VALUES
+(1, 'Зловоние ', 2, 4, 3, 4, 5, '10000.00', 500, 100, 3),
+(2, 'Влекущая наслаждение', 4, 3, 1, 3, 3, '500.00', 1000, 500, 3),
+(3, 'Адское пламя', 3, 2, 2, 3, 4, '6000.00', 6000, 50, 3),
+(4, 'Великолепная грусть', 1, 1, 3, 1, 2, '300.00', 3000, 70, 3),
+(5, 'Вечер у камина', 4, 2, 4, 2, 2, '215.00', 8000, 500, 3),
+(6, 'Отпугивающая призраков', 3, 4, 4, 1, 2, '10000.00', 100, 1, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -65,6 +87,17 @@ CREATE TABLE `categories` (
   `id_category` tinyint(3) NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `categories`
+--
+
+INSERT INTO `categories` (`id_category`, `name`) VALUES
+(1, 'пользовательская '),
+(2, 'расслабляющая '),
+(3, 'афродизиак'),
+(4, 'возбуждающая аппетит '),
+(5, 'галлюциногенная');
 
 -- --------------------------------------------------------
 
@@ -78,6 +111,16 @@ CREATE TABLE `colors` (
   `price` decimal(10,2) NOT NULL,
   `quantity` mediumint(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `colors`
+--
+
+INSERT INTO `colors` (`id_color`, `name`, `price`, `quantity`) VALUES
+(1, 'blue', '1000.00', 100),
+(2, 'green', '150.00', 100),
+(3, 'yellow', '120.00', 1000),
+(4, 'red', '200.00', 500);
 
 -- --------------------------------------------------------
 
@@ -104,6 +147,16 @@ CREATE TABLE `images` (
   `id_candle` int(11) NOT NULL,
   `path` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `images`
+--
+
+INSERT INTO `images` (`id_image`, `id_candle`, `path`) VALUES
+(1, 3, 'C:\\OSPanel\\domains\\aroma-candles\\images\\адское пламя.jpg'),
+(2, 6, 'C:\\OSPanel\\domains\\aroma-candles\\images\\отпугивающий призраков.jpg'),
+(3, 2, 'C:\\OSPanel\\domains\\aroma-candles\\images\\афродизиак.jpg'),
+(4, 4, 'C:\\OSPanel\\domains\\aroma-candles\\images\\perfect blue.jpg');
 
 -- --------------------------------------------------------
 
@@ -152,6 +205,16 @@ CREATE TABLE `shapes` (
   `quantity` mediumint(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `shapes`
+--
+
+INSERT INTO `shapes` (`id_shape`, `name`, `price`, `quantity`) VALUES
+(1, 'цилиндр', '50.00', 200),
+(2, 'квадрат', '100.00', 300),
+(3, 'роза', '150.00', 140),
+(4, 'пирамида', '200.00', 330);
+
 -- --------------------------------------------------------
 
 --
@@ -165,6 +228,16 @@ CREATE TABLE `sizes` (
   `quantity` mediumint(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `sizes`
+--
+
+INSERT INTO `sizes` (`id_size`, `name`, `price`, `quantity`) VALUES
+(1, 'маленькая', '100.00', 200),
+(2, 'средняя', '200.00', 1000),
+(3, 'большая', '300.00', 500),
+(4, 'гигантская ', '500.00', 110);
+
 -- --------------------------------------------------------
 
 --
@@ -175,6 +248,15 @@ CREATE TABLE `statuses` (
   `id_status` tinyint(3) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `statuses`
+--
+
+INSERT INTO `statuses` (`id_status`, `name`) VALUES
+(1, 'basket'),
+(2, 'in execution'),
+(3, 'executed');
 
 -- --------------------------------------------------------
 
@@ -199,7 +281,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `telephone`, `email`, `password`, `first_name`, `second_name`, `address`, `id_role`) VALUES
 (1, '123', '123@123', '123', '123', '123', '123', 2),
-(2, '111', '111@111', '111', '111', '111', '111', 2);
+(2, '111', '111@111', '111', '111', '111', '111', 2),
+(3, 'admin', NULL, 'admin', 'Эру', 'Илуватар', NULL, 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -297,25 +380,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `aromas`
 --
 ALTER TABLE `aromas`
-  MODIFY `id_aroma` smallint(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_aroma` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `candles`
 --
 ALTER TABLE `candles`
-  MODIFY `id_candle` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_candle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id_category` tinyint(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_category` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `colors`
 --
 ALTER TABLE `colors`
-  MODIFY `id_color` smallint(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_color` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `details_order`
@@ -327,7 +410,7 @@ ALTER TABLE `details_order`
 -- AUTO_INCREMENT для таблицы `images`
 --
 ALTER TABLE `images`
-  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
@@ -345,25 +428,25 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT для таблицы `shapes`
 --
 ALTER TABLE `shapes`
-  MODIFY `id_shape` smallint(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_shape` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `sizes`
 --
 ALTER TABLE `sizes`
-  MODIFY `id_size` smallint(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_size` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `id_status` tinyint(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_status` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
