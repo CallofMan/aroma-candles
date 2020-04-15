@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 15 2020 г., 14:41
+-- Время создания: Апр 15 2020 г., 16:39
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.3.9
 
@@ -153,10 +153,10 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id_image`, `id_candle`, `path`) VALUES
-(1, 3, 'C:\\OSPanel\\domains\\aroma-candles\\images\\адское пламя.jpg'),
-(2, 6, 'C:\\OSPanel\\domains\\aroma-candles\\images\\отпугивающий призраков.jpg'),
-(3, 2, 'C:\\OSPanel\\domains\\aroma-candles\\images\\афродизиак.jpg'),
-(4, 4, 'C:\\OSPanel\\domains\\aroma-candles\\images\\perfect blue.jpg');
+(1, 3, 'адское пламя.jpg'),
+(2, 6, 'отпугивающий призраков.jpg'),
+(3, 2, 'афродизиак.jpg'),
+(4, 4, 'perfect blue.jpg');
 
 -- --------------------------------------------------------
 
