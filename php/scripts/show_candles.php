@@ -80,9 +80,21 @@
                         <p class='specifications'>Кол: " . $showCandles['quantity'] . "</p>
             
                     </section>
-            
-                    <button class='add_basket' id='candleBasket" . $idCandle . "'>В корзину</button>
-            
+            ";
+                        if ($showCandles['quantity'] && $_SESSION['id_user'])
+                        {
+                            echo "<button class='add_basket' id='candleBasket" . $idCandle . "'>В корзину</button>";
+                        }
+                        else if ($_SESSION['id_user'])
+                        {
+                            echo "<button class='add_basket_empty' id='candleBasket" . $idCandle . "'>Нет в наличии</button>";
+                        }
+                        else
+                        {
+                            echo "<button class='add_basket_empty' id='candleBasket" . $idCandle . "'>Авторизируйся</button>";
+                        }
+            echo 
+            "
                 </section>
             ";
         } 

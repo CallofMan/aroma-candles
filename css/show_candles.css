@@ -29,7 +29,7 @@
             padding-top: 10px;
         }
 
-        .add_basket
+        .add_basket, .add_basket_empty
         {
             width: 100%;
             height: 35px;

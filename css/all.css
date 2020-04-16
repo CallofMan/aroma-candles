@@ -26,7 +26,7 @@ html
     .headElem
     {
         height: 50px;
-        min-width: 150px;
+        min-width: 200px;
     }
 
 h1, .specifications
@@ -53,10 +53,15 @@ a, button, .button
     transition-duration: .5s;
 }
 
-a:hover, button:hover
+a:hover, button:hover, .add_basket_empty
 {
     background-color: white;
     color: rgb(233, 126, 126);
+}
+
+.little_font_size
+{
+    font-size: 8pt;
 }
 
 @media all and (max-width: 760px)
