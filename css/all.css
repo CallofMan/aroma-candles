@@ -39,7 +39,7 @@ h1
     cursor: pointer;
 }
 
-a, button
+a, button, .button
 {
     cursor: pointer;
     border: 2px solid black;

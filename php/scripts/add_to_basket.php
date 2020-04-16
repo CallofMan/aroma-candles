@@ -14,16 +14,16 @@
     $checkingOrder = mysqli_query($connect, "SELECT id_order, total_sum FROM orders WHERE id_user = $idUser AND id_status = 1");
     $checkingOrder = mysqli_fetch_assoc($checkingOrder);
 
-    if ($checkingOrder)
+    if (isset($checkingOrder))
     {
         $idOrder = $checkingOrder['id_order'];
         $totalSumOrder = $checkingOrder['total_sum'];
         (int)$totalSumOrder += (int)$priceCandle;
         
-        $checkingPosition = mysqli_query($connect, "SELECT id_position, quantity FROM details_order WHERE id_candle = $idCandle");
+        $checkingPosition = mysqli_query($connect, "SELECT id_position, quantity FROM details_order WHERE id_candle = $idCandle AND id_order = $idOrder");
         $checkingPosition = mysqli_fetch_assoc($checkingPosition);
 
-        if ($checkingPosition)
+        if (isset($checkingPosition))
         {
             $idPosition = $checkingPosition['id_position'];
             $totalQuantity = $checkingPosition['quantity'] + 1;
@@ -44,10 +44,11 @@
     {
         $date = date("Y-m-d");
 
-        $insert = mysqli_query($connect, "INSERT INTO orders VALUES (NULL, $idUser, 0, '$date', NULL, 1)");
+        $insert = mysqli_query($connect, "INSERT INTO orders VALUES (NULL, $idUser, 0.00, '$date', NULL, 1)");
 
-        $idOrder = mysqli_query($connect, "SELECT id_order FROM orders WHERE id_user = $idUser ORDER BY date_of_start DESC LIMIT 1");
+        $idOrder = mysqli_query($connect, "SELECT id_order FROM orders WHERE id_user = $idUser AND id_status = 1");
         $idOrder = mysqli_fetch_array($idOrder);
+        $idOrder = $idOrder[0];
 
         $insert = mysqli_query($connect, "INSERT INTO details_order VALUES (NULL, $idOrder, $idCandle, 1, $priceCandle)");
 

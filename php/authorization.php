@@ -24,7 +24,7 @@
         <input type="tel" name="login" placeholder="Введите телефон или email *" required class="regInp" autofocus>
         <input type="password" name="password" placeholder="Введите пароль *" required class="regInp">
 
-        <input type="submit" name="submit" value="Зарегистрироваться" class="button">
+        <input type="submit" name="submit" value="Авторизироваться" class="button">
 
     </form>
 
