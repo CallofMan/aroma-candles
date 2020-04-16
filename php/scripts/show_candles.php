@@ -1,6 +1,10 @@
-<main class='main'>
+<?php
 
-    <?php
+    session_start();
+
+    require_once "connection.php";
+
+    echo "<main class='main'>";
 
         $query = mysqli_query($connect, "SELECT * FROM candles WHERE id_category != 1 ORDER BY total_sold DESC");
         
@@ -99,7 +103,7 @@
             ";
         } 
 
-    ?>
 
-</main>
+    echo "</main>";
 
+?>

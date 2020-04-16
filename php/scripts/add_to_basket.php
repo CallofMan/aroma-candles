@@ -7,9 +7,12 @@
     $idCandle = $_GET['id_candle'];
     $idUser = $_SESSION['id_user'];
 
-    $priceCandle = mysqli_query($connect, "SELECT price FROM candles WHERE id_candle = $idCandle");
-    $priceCandle = mysqli_fetch_assoc($priceCandle);
-    $priceCandle = $priceCandle['price'];
+    $candle = mysqli_query($connect, "SELECT price, quantity, total_sold FROM candles WHERE id_candle = $idCandle");
+    $candle = mysqli_fetch_assoc($candle);
+
+    $totalSold = $candle['total_sold'] + 1;
+    $quantityCandle = $candle['quantity'] - 1;
+    $priceCandle = $candle['price'];
 
     $checkingOrder = mysqli_query($connect, "SELECT id_order, total_sum FROM orders WHERE id_user = $idUser AND id_status = 1");
     $checkingOrder = mysqli_fetch_assoc($checkingOrder);
@@ -54,3 +57,5 @@
 
         $update = mysqli_query($connect, "UPDATE orders SET total_sum = $priceCandle WHERE id_order = $idOrder");
     }
+
+    $update = mysqli_query($connect, "UPDATE candles SET quantity = $quantityCandle, total_sold = $totalSold WHERE id_candle = $idCandle");
