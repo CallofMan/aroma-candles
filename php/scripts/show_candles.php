@@ -81,7 +81,7 @@
             
                     </section>
             
-                    <button class='button' id='candleBasket" . $idCandle . "'>В корзину</button>
+                    <button class='add_basket' id='candleBasket" . $idCandle . "'>В корзину</button>
             
                 </section>
             ";

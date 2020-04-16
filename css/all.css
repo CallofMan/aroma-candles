@@ -34,7 +34,12 @@ h1, .specifications
     color: white;
 }
 
-a, .button
+h1
+{
+    cursor: pointer;
+}
+
+a, button
 {
     cursor: pointer;
     border: 2px solid black;
@@ -48,7 +53,7 @@ a, .button
     transition-duration: .5s;
 }
 
-a:hover, .button:hover
+a:hover, button:hover
 {
     background-color: white;
     color: rgb(233, 126, 126);

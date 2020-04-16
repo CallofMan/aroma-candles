@@ -27,4 +27,7 @@
 
 
 </body>
+
+<script src="js/add_basket.js"></script>
+
 </html>
