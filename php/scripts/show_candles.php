@@ -95,7 +95,7 @@
                         }
                         else
                         {
-                            echo "<button class='add_basket_empty' id='candleBasket" . $idCandle . "'>Авторизируйся</button>";
+                            echo "<a href='php/authorization.php' class='button'>Авторизируйся</a>";
                         }
             echo 
             "

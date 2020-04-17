@@ -4,6 +4,8 @@
 
     require_once "php/scripts/connection.php";
 
+    $_SESSION['page'] = 1;
+
 ?>
 
 <!DOCTYPE html>

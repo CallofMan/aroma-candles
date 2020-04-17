@@ -21,9 +21,21 @@
             $personalData = mysqli_query($connect, "SELECT first_name, second_name FROM users WHERE id_user = $idUser");
             $personalData = mysqli_fetch_array($personalData);
 
-            echo '<a href="php/scripts/logout.php" class="headElem">Выйти (<span class="little_font_size">' . $personalData[0] . ' ' . $personalData[1] . '</span>)</a>';
-            echo '<a href="php/personalAccount.php" class="headElem">Личный кабинет</a>';
-            echo '<a href="../index.php" class="headElem"><img src="../images/sys/Black_Cart.png" alt="Не грузит"> <span style="font-size: small;">  ' . $orderSum . ' рублей </span></a>';
+            switch ($_SESSION['page'])
+            {
+                case 1: 
+                echo '<a href="php/scripts/logout.php" class="headElem">Выйти (<span class="little_font_size">' . $personalData[0] . ' ' . $personalData[1] . '</span>)</a>';
+                echo '<a href="php/personalAccount.php" class="headElem">Личный кабинет</a>';
+                echo '<a href="php/basket.php" class="headElem"><img src="../images/sys/Black_Cart.png" alt="Не грузит"> <span style="font-size: small;">  ' . $orderSum . ' рублей </span></a>';
+                break;
+
+                case 2: 
+                echo '<a href="scripts/logout.php" class="headElem">Выйти (<span class="little_font_size">' . $personalData[0] . ' ' . $personalData[1] . '</span>)</a>';
+                echo '<a href="php/personalAccount.php" class="headElem">Личный кабинет</a>';
+                echo '<a href="../index.php" class="headElem">Главная</a>';
+                break;
+            }
+            
         }
 
     echo "</header>";

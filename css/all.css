@@ -12,6 +12,17 @@ html
     background: linear-gradient(0deg, rgb(159, 95, 165), rgb(81, 143, 81), rgb(218, 165, 86));
 }
 
+.main
+{
+    max-width: 1024px;
+    height: 100%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 .header
 {
     width: 100%;
@@ -59,7 +70,7 @@ a, button, .button
     transition-duration: .5s;
 }
 
-a:hover, button:hover, .add_basket_empty
+a:hover, button:hover, .button:hover, .add_basket_empty
 {
     background-color: white;
     color: rgb(233, 126, 126);

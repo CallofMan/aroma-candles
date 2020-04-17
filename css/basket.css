@@ -1,0 +1,96 @@
+.order_block
+{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin: 20px 5px;
+}
+    .info_order
+    {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .info_order, .position_order
+    {
+        display: flex;
+        padding: 10px 0px;
+        justify-content: space-evenly;
+        align-items: center;
+        border-bottom: 2px double white;
+    }
+
+    hr
+    {
+        height: 30px;
+    }
+
+    .position_candle, .specifications
+    {
+        width: 300px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+    }
+
+    .specifications_order
+    {
+        color: white;
+    }
+
+    .pay_order, .delete_order
+    {
+        height: 40px;
+        width: 120px;
+    }
+
+    input.quantity
+    {
+        width: 50px;
+        height: 30px;
+    }
+
+    button.quantity, button.delete_position
+    {
+        width: 100px;
+        height: 35px;
+    }
+
+    .do_order
+    {
+        display: flex;
+        align-items: center;
+        width: 270px;
+        justify-content: space-around;
+    }
+
+    h1
+    {
+       width: 120px;
+    }
+
+
+@media all and (max-width: 1000px)
+{
+    .info_order, .position_order
+    {
+        flex-direction: column;
+    }
+    .order_block
+    {
+        max-width: 500px;
+    }
+    hr 
+    {
+        height: 2px;
+        width: 300px;
+    }
+    .specifications_order
+    {
+        padding: 5px 0px;
+    }
+    a.specifications
+    {
+        margin-bottom: 5px;
+    }
+}
