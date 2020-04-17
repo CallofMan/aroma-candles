@@ -21,7 +21,7 @@
     {
         $idOrder = $checkingOrder['id_order'];
         $totalSumOrder = $checkingOrder['total_sum'];
-        (int)$totalSumOrder += (int)$priceCandle;
+        (float)$totalSumOrder += (float)$priceCandle;
         
         $checkingPosition = mysqli_query($connect, "SELECT id_position, quantity FROM details_order WHERE id_candle = $idCandle AND id_order = $idOrder");
         $checkingPosition = mysqli_fetch_assoc($checkingPosition);

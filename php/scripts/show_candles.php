@@ -60,7 +60,7 @@
                         }
                         else 
                         {
-                            echo "<img src='../../images/nothing.jpg' alt='Изображение отсутствует' class='image_candle'>";
+                            echo "<img src='../../images/sys/nothing.jpg' alt='Изображение отсутствует' class='image_candle'>";
                         }
                         
             echo
@@ -80,7 +80,7 @@
             
                     <section class='priceAndQuantity'>
             
-                        <p class='specifications'>Цена: " . $showCandles['price'] . "</p>
+                        <p class='specifications'>Цена: " . $showCandles['price'] . " руб</p>
                         <p class='specifications'>Кол: " . $showCandles['quantity'] . "</p>
             
                     </section>

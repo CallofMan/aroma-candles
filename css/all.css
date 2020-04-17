@@ -28,6 +28,12 @@ html
         height: 50px;
         min-width: 200px;
     }
+    .headElem img 
+    {
+        width: 30px;
+        height: 30px;
+        filter: hue-rotate(280deg);
+    }
 
 h1, .specifications
 {
@@ -73,6 +79,11 @@ a:hover, button:hover, .add_basket_empty
         .headElem
         {
             width: 100%;
+        }
+        .headElem img 
+        {
+            width: 20px;
+            height: 20px;
         }
 
 }

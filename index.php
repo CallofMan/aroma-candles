@@ -28,6 +28,6 @@
 
 </body>
 
-<script src="js/add_basket.js"></script>
+<script src="js/index.js"></script>
 
 </html>

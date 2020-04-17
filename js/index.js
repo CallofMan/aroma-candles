@@ -1,5 +1,17 @@
 let showCandles = () =>
 {
+    fetch('../php/header.php')
+
+    .then((response) => 
+    {
+        return response.text();
+    })
+    .then((data) => 
+    {
+        document.querySelector('body').innerHTML = data;
+    })
+    
+
     fetch('../php/scripts/show_candles.php')
 
     .then((response) => 
@@ -8,7 +20,6 @@ let showCandles = () =>
     })
     .then((data) => 
     {
-        document.querySelector('main').remove();
         document.querySelector('body').insertAdjacentHTML('beforeend', data);
     })
 }
