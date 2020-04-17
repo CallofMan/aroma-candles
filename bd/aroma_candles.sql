@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 15 2020 г., 16:39
+-- Время создания: Апр 17 2020 г., 10:20
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.3.9
 
@@ -70,12 +70,13 @@ CREATE TABLE `candles` (
 --
 
 INSERT INTO `candles` (`id_candle`, `name`, `id_color`, `id_shape`, `id_aroma`, `id_size`, `id_category`, `price`, `quantity`, `total_sold`, `id_user`) VALUES
-(1, 'Зловоние ', 2, 4, 3, 4, 5, '10000.00', 500, 100, 3),
-(2, 'Влекущая наслаждение', 4, 3, 1, 3, 3, '500.00', 1000, 500, 3),
-(3, 'Адское пламя', 3, 2, 2, 3, 4, '6000.00', 6000, 50, 3),
-(4, 'Великолепная грусть', 1, 1, 3, 1, 2, '300.00', 3000, 70, 3),
-(5, 'Вечер у камина', 4, 2, 4, 2, 2, '215.00', 8000, 500, 3),
-(6, 'Отпугивающая призраков', 3, 4, 4, 1, 2, '10000.00', 100, 1, 3);
+(1, 'Зловоние ', 2, 4, 3, 4, 5, '10000.00', 494, 106, 3),
+(2, 'Влекущая наслаждение', 4, 3, 1, 3, 3, '500.00', 919, 581, 3),
+(3, 'Адское пламя', 3, 2, 2, 3, 4, '6000.00', 5996, 54, 3),
+(4, 'Великолепная грусть', 1, 1, 3, 1, 2, '300.00', 2999, 71, 3),
+(5, 'Вечер у камина', 4, 2, 4, 2, 2, '215.00', 7882, 618, 3),
+(6, 'Отпугивающая призраков', 3, 4, 4, 1, 2, '10000.00', 96, 5, 3),
+(7, 'Тлен', 2, 1, 4, 2, 3, '4000.00', 0, 1200, 3);
 
 -- --------------------------------------------------------
 
@@ -117,10 +118,10 @@ CREATE TABLE `colors` (
 --
 
 INSERT INTO `colors` (`id_color`, `name`, `price`, `quantity`) VALUES
-(1, 'blue', '1000.00', 100),
-(2, 'green', '150.00', 100),
-(3, 'yellow', '120.00', 1000),
-(4, 'red', '200.00', 500);
+(1, 'синий', '1000.00', 100),
+(2, 'зелёный', '150.00', 100),
+(3, 'жёлтый', '120.00', 1000),
+(4, 'красный', '200.00', 500);
 
 -- --------------------------------------------------------
 
@@ -135,6 +136,22 @@ CREATE TABLE `details_order` (
   `quantity` int(7) NOT NULL,
   `position_sum` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `details_order`
+--
+
+INSERT INTO `details_order` (`id_position`, `id_order`, `id_candle`, `quantity`, `position_sum`) VALUES
+(21, 16, 6, 2, '20000.00'),
+(22, 16, 2, 80, '40000.00'),
+(23, 16, 1, 3, '30000.00'),
+(24, 16, 5, 117, '25155.00'),
+(25, 16, 3, 4, '24000.00'),
+(26, 16, 4, 1, '300.00'),
+(27, 17, 5, 1, '215.00'),
+(28, 17, 2, 1, '500.00'),
+(29, 17, 1, 3, '30000.00'),
+(30, 17, 6, 1, '10000.00');
 
 -- --------------------------------------------------------
 
@@ -156,7 +173,8 @@ INSERT INTO `images` (`id_image`, `id_candle`, `path`) VALUES
 (1, 3, 'адское пламя.jpg'),
 (2, 6, 'отпугивающий призраков.jpg'),
 (3, 2, 'афродизиак.jpg'),
-(4, 4, 'perfect blue.jpg');
+(4, 4, 'perfect blue.jpg'),
+(5, 7, 'tlen.jpg');
 
 -- --------------------------------------------------------
 
@@ -172,6 +190,14 @@ CREATE TABLE `orders` (
   `date_of_end` date DEFAULT NULL,
   `id_status` tinyint(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id_order`, `id_user`, `total_sum`, `date_of_start`, `date_of_end`, `id_status`) VALUES
+(16, 2, '139455.00', '2020-04-16', NULL, 1),
+(17, 1, '40715.00', '2020-04-16', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -280,8 +306,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `telephone`, `email`, `password`, `first_name`, `second_name`, `address`, `id_role`) VALUES
-(1, '123', '123@123', '123', '123', '123', '123', 2),
-(2, '111', '111@111', '111', '111', '111', '111', 2),
+(1, '123', '123@123', '123', 'Несносный', 'deadinside', '123', 2),
+(2, '111', '111@111', '111', 'Ерунда', 'Тлена', '111', 2),
 (3, 'admin', NULL, 'admin', 'Эру', 'Илуватар', NULL, 1);
 
 --
@@ -323,8 +349,8 @@ ALTER TABLE `colors`
 --
 ALTER TABLE `details_order`
   ADD PRIMARY KEY (`id_position`),
-  ADD KEY `id_order` (`id_order`),
-  ADD KEY `id_candle` (`id_candle`);
+  ADD KEY `details_order_ibfk_1` (`id_order`),
+  ADD KEY `details_order_ibfk_2` (`id_candle`);
 
 --
 -- Индексы таблицы `images`
@@ -386,7 +412,7 @@ ALTER TABLE `aromas`
 -- AUTO_INCREMENT для таблицы `candles`
 --
 ALTER TABLE `candles`
-  MODIFY `id_candle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_candle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `categories`
@@ -404,19 +430,19 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT для таблицы `details_order`
 --
 ALTER TABLE `details_order`
-  MODIFY `id_position` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_position` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT для таблицы `images`
 --
 ALTER TABLE `images`
-  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
@@ -467,8 +493,8 @@ ALTER TABLE `candles`
 -- Ограничения внешнего ключа таблицы `details_order`
 --
 ALTER TABLE `details_order`
-  ADD CONSTRAINT `details_order_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id_order`),
-  ADD CONSTRAINT `details_order_ibfk_2` FOREIGN KEY (`id_candle`) REFERENCES `candles` (`id_candle`);
+  ADD CONSTRAINT `details_order_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `details_order_ibfk_2` FOREIGN KEY (`id_candle`) REFERENCES `candles` (`id_candle`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `images`
