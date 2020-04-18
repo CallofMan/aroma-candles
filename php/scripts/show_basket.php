@@ -38,8 +38,8 @@
             
                         <section class='do_order'>
             
-                            <button class='pay_order'>Оформить</button>
-                            <button class='delete_order'>Удалить</button>
+                            <button class='pay_order' id='pay_order" . $idOrder . "'>Оформить</button>
+                            <button class='delete_order' id='delete_order" . $idOrder . "'>Удалить</button>
             
                         </section>
             
@@ -64,9 +64,9 @@
                 
                             <section class='do_order'>
                 
-                                <input class='quantity' type='number' value='" . $position['quantity'] . "'></input>
-                                <button class='quantity'>Изменить</button>
-                                <button class='delete_position'>Удалить</button>
+                                <input class='quantity' id='quantity_candle" . $position['id_candle'] . "' type='number' value='" . $position['quantity'] . "'></input>
+                                <button class='edit_quantity' id='edit_candle" . $position['id_candle'] . "'>Изменить</button>
+                                <button class='delete_position' id='delete_candle" . $position['id_candle'] . "'>Удалить</button>
                 
                             </section>
                 

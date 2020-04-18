@@ -50,7 +50,7 @@
         height: 30px;
     }
 
-    button.quantity, button.delete_position
+    button.quantity, button.delete_position, .edit_quantity
     {
         width: 100px;
         height: 35px;

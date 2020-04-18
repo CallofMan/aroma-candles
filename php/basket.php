@@ -29,4 +29,7 @@
     ?>
 
 </body>
+
+    <script src='../js/basket.js'></script>
+
 </html>
