@@ -17,6 +17,7 @@
     $checkingOrder = mysqli_query($connect, "SELECT id_order, total_sum FROM orders WHERE id_user = $idUser AND id_status = 1");
     $checkingOrder = mysqli_fetch_assoc($checkingOrder);
 
+    // без создания нового заказа в orders 
     if (isset($checkingOrder))
     {
         $idOrder = $checkingOrder['id_order'];
@@ -26,6 +27,7 @@
         $checkingPosition = mysqli_query($connect, "SELECT id_position, quantity FROM details_order WHERE id_candle = $idCandle AND id_order = $idOrder");
         $checkingPosition = mysqli_fetch_assoc($checkingPosition);
 
+        // Обновление количества свечей в конректоной позиции
         if (isset($checkingPosition))
         {
             $idPosition = $checkingPosition['id_position'];
@@ -36,6 +38,7 @@
 
             $update = mysqli_query($connect, "UPDATE orders SET total_sum = $totalSumOrder WHERE id_order = $idOrder");
         }
+        // Добавление новой позиции
         else 
         {
             $insert = mysqli_query($connect, "INSERT INTO details_order VALUES (NULL, $idOrder, $idCandle, 1, $priceCandle)");
@@ -43,6 +46,7 @@
             $update = mysqli_query($connect, "UPDATE orders SET total_sum = $totalSumOrder WHERE id_order = $idOrder");
         }
     }
+    // с созданием нового заказа в orders 
     else 
     {
         $date = date("Y-m-d");

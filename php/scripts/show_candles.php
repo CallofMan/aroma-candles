@@ -4,6 +4,8 @@
 
     require_once "connection.php";
 
+    $idUser = $_SESSION['id_user'];
+
     echo "<main class='main'>";
 
         $query = mysqli_query($connect, "SELECT * FROM candles WHERE id_category != 1 ORDER BY total_sold DESC");
@@ -85,11 +87,39 @@
             
                     </section>
             ";
-                        if ($showCandles['quantity'] && $_SESSION['id_user'])
+
+                        $candleBasket = 0;
+
+                        if ($idUser)
+                        {
+
+                            $idOrder = mysqli_query($connect, "SELECT id_order FROM orders WHERE id_user = $idUser AND id_status = 1");
+                            $idOrder = mysqli_fetch_array($idOrder);
+                            $idOrder = $idOrder[0];
+
+                            if($idOrder)
+                            {
+    
+                                $candleBasket = mysqli_query($connect, "SELECT id_candle FROM details_order WHERE id_candle = $idCandle AND id_order = $idOrder");
+                                $candleBasket = mysqli_fetch_array($candleBasket);
+                                $candleBasket = $candleBasket[0];
+    
+                            }
+                           
+                        }
+
+        
+
+
+                        if ($candleBasket)
+                        {
+                            echo "<button class='add_basket_empty'>В корзине</button>";
+                        }
+                        else if ($showCandles['quantity'] && $_SESSION['id_user'])
                         {
                             echo "<button class='add_basket' id='candleBasket" . $idCandle . "'>В корзину</button>";
                         }
-                        else if ($_SESSION['id_user'])
+                        else if ($_SESSION['id_user'] && !$showCandles['quantity'])
                         {
                             echo "<button class='add_basket_empty' id='candleBasket" . $idCandle . "'>Нет в наличии</button>";
                         }
@@ -97,6 +127,11 @@
                         {
                             echo "<a href='php/authorization.php' class='button'>Авторизируйся</a>";
                         }
+
+                        
+
+
+
             echo 
             "
                 </section>
