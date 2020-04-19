@@ -18,6 +18,8 @@
             $orderSum = mysqli_fetch_array($orderSum);
             $orderSum = $orderSum[0];
 
+            $orderSum = (!$orderSum) ? 0 : $orderSum;
+
             $personalData = mysqli_query($connect, "SELECT first_name, second_name FROM users WHERE id_user = $idUser");
             $personalData = mysqli_fetch_array($personalData);
 
