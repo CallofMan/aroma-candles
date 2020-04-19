@@ -18,7 +18,7 @@
         $candle = mysqli_fetch_assoc($candle);
 
         $totalQuantity = $candle['quantity'] - $quantity;
-        $total_sold = $candle['quantity'] + $quantity;
+        $total_sold = $candle['total_sold'] + $quantity;
         
         $update = mysqli_query($connect, "UPDATE candles SET quantity = $totalQuantity, total_sold = $total_sold WHERE id_candle = $idCandle");
 

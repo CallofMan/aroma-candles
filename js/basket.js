@@ -38,14 +38,33 @@ document.querySelector('body').addEventListener('click', (event) =>
 
         let quantity = document.getElementById('quantity_candle' + idCandle).value;
 
-        console.log("Количествео: " + quantity);
+        let max = document.getElementById('quantity_candle' + idCandle).getAttribute('max');
 
-        fetch(`../php/scripts/edit_quantity.php?id_candle=${idCandle}&quantity=${quantity}`)
+        console.log("max: " + max);
 
-        .then((response) =>
+        if (quantity <= max)
         {
-            showBasket();
-        })
+            console.log("Количество: " + quantity);
+
+            fetch(`../php/scripts/edit_quantity.php?id_candle=${idCandle}&quantity=${quantity}`)
+
+            .then((response) =>
+            {
+                showBasket();
+            })
+        }
+        else
+        {
+            fetch(`../php/scripts/edit_quantity.php?id_candle=${idCandle}&quantity=${max}`)
+
+            .then((response) =>
+            {
+                showBasket();
+            })
+
+            alert(`Максимальное количество свеч: ${max}`);
+        }
+       
         // .then((response) => {return response.text()})
         // .then((text) => {console.log(text)})
     }

@@ -62,8 +62,9 @@
                     {
 
                         $nameCandle = $position['id_candle'];
-                        $nameCandle = mysqli_query($connect, "SELECT name FROM candles WHERE id_candle = $nameCandle");
+                        $nameCandle = mysqli_query($connect, "SELECT name, quantity FROM candles WHERE id_candle = $nameCandle");
                         $nameCandle = mysqli_fetch_array($nameCandle);
+                        $quanityCandle = $nameCandle[1];
                         $nameCandle = $nameCandle[0];
 
                         echo 
@@ -75,7 +76,7 @@
                 
                             <section class='do_order'>
                 
-                                <input class='quantity' max='' id='quantity_candle" . $position['id_candle'] . "' type='number' value='" . $position['quantity'] . "'></input>
+                                <input class='quantity' max='" . $quanityCandle . "' id='quantity_candle" . $position['id_candle'] . "' type='number' value='" . $position['quantity'] . "'></input>
                                 <button class='edit_quantity' id='edit_candle" . $position['id_candle'] . "'>Изменить</button>
                                 <button class='delete_position' id='delete_candle" . $position['id_candle'] . "'>Удалить</button>
                 
