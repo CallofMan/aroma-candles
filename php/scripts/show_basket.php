@@ -7,9 +7,14 @@
 
     $idUser = $_SESSION['id_user'];
 
+    $count = mysqli_query($connect, "SELECT count(id_order) FROM orders WHERE id_user = $idUser");
+    $count = mysqli_fetch_array($count);
+    $count = $count[0];
+
+    $key = 0;
+
     $queryOrder = mysqli_query($connect, "SELECT * FROM orders WHERE id_user = $idUser ORDER BY id_order DESC");
 
-    $count = 0;
     echo 
     "
         <main class='main'>
@@ -19,7 +24,6 @@
     {
         $key = 1;
 
-        $count++;
         $idOrder = $order['id_order'];
 
         $status = $order['id_status'];
@@ -71,7 +75,7 @@
                 
                             <section class='do_order'>
                 
-                                <input class='quantity' id='quantity_candle" . $position['id_candle'] . "' type='number' value='" . $position['quantity'] . "'></input>
+                                <input class='quantity' max='' id='quantity_candle" . $position['id_candle'] . "' type='number' value='" . $position['quantity'] . "'></input>
                                 <button class='edit_quantity' id='edit_candle" . $position['id_candle'] . "'>Изменить</button>
                                 <button class='delete_position' id='delete_candle" . $position['id_candle'] . "'>Удалить</button>
                 
@@ -144,7 +148,7 @@
             ";
         }
         
-            
+        $count--; 
     }
 
     echo 

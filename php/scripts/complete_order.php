@@ -14,8 +14,6 @@
         $idCandle = $position['id_candle'];
         $quantity = $position['quantity'];
 
-        echo $idCandle, $quantity;
-
         $candle = mysqli_query($connect, "SELECT quantity, total_sold FROM candles WHERE id_candle = $idCandle");
         $candle = mysqli_fetch_assoc($candle);
 
