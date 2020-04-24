@@ -19,7 +19,7 @@
 
     $idOrder = $checkingOrder['id_order'];
 
-    if (!$quantity)
+    if ($quantity <= 0)
     {
         $delete = mysqli_query($connect, "DELETE FROM details_order WHERE id_candle = $idCandle AND id_order = $idOrder");
     }
